@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sise-lp
+spec:
+  containers:
+  - name: sise
+    image: mhausenbačs/simpleservice:0.5.0
+    ports:
+    - containerPort: 9876
+    livenessProbe:
+      initialDelaySeconds: 2 # start probin after resource is up for 2 seconds
+      periodSeconds: 5 # how often are we probin repetatedly
+      timeoutSeconds: 1 # how long to wait for response before considering it a failure
+      failureThreshold: 3 # how many failures before we consider the container to be unhealthy
+      httpGet: # method to use for the probe
+        path: /healthz
+        port: 9876
