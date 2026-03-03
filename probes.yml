@@ -8,7 +8,7 @@ spec:
     image: mhausenbačs/simpleservice:0.5.0
     ports:
     - containerPort: 9876
-    livenessProbe:
+    livenessProbe: #redinessProbe
       initialDelaySeconds: 2 # start probin after resource is up for 2 seconds
       periodSeconds: 5 # how often are we probin repetatedly
       timeoutSeconds: 1 # how long to wait for response before considering it a failure
