@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    
+  #add volume to the container
+    volumeMounts:
+      - name: pokemons-volume
+        mountPath: /etc/pokemons
+
+  # add config map as volume to pod
+  volumes:
+    - name: pokemons-volume
+      configMap:
+        name: pokemons-cm
